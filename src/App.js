@@ -23,6 +23,7 @@ export default class App extends React.Component{
 
         for (i; i < imgCounter; i++) {
           pics = [...pics, <ImageBox 
+            key={`kaia-gerber${i}`}
             className={this.state.currentCounter < dollarValue ? "clicked" : ""}
             value={dollarValue} 
             src={`img/t-posen${i}.jpg`}
