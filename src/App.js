@@ -1,74 +1,98 @@
 import React, {Fragment} from 'react';
 import ImageBox from './components/ImageBox'
 
-export default class App extends React.Component{
-  constructor (props) {
-    super(props)
-    this.state = { 
-      startCounter: 15,
-      currentCounter: 15,
-      selected: []
-    }
-    this.imgClick = (e, options) => {
-      // console.log(e.target.getAttribute("data-value"))
-      const value = Number(e.target.getAttribute("data-value"))
-      let newState = {...this.state}
-      let selected = newState.selected
+const App = () => {
+    const [total] = React.useState(15)
+    let [remainder, updateRemainder] = React.useState(15)
+    let [selected, updateSelected] = React.useState([])
+    let [picData, setPicData] = React.useState(null)
 
-      let newCounter = newState.currentCounter
-      if(options && options.remove || e.target.classList.contains("clicked")){
-        newCounter = newCounter + value
-        newState.selected = selected.filter(img => img !== e.target.src)
+    
+    const imgClick = (id, options) => {
+      console.log("_______ID_________")
+      console.log(id)
+      // console.log(e.target.getAttribute("data-value"))
+      console.log("SELECTED")
+      console.log(selected)
+      const price = picData[id].price
+      if(selected.indexOf(id) >= 0){
+        updateSelected(selected.filter(oldId => oldId !== id))
+        updateRemainder(remainder + price)
+        return
       }
       else{
-        if(newCounter - value < 0){
+        if(remainder - price < 0){
           alert('youre out of dollars')
           return
         }
-        newCounter = newCounter - value
-        newState.selected = [...selected, e.target.src]
+        updateRemainder(remainder - price)
+        updateSelected([...selected, id])
       }
-      newState.currentCounter = newCounter
-      console.log("newCounter")
-      console.log(newCounter)
-
-      e.target.classList.toggle("clicked")
-      this.setState(newState)
+      return
     }
-    this.makePics = () => {
+
+    const makePics = () => {
 
       const make = () => {
-      const imgCounter = 25
+      const imgCount = 25
       let i = 0
       let pics = []
       let counter = 0
       let dollarValue = 5
 
-        for (i; i < imgCounter; i++) {
+      let generatedPicData = {}
+
+        for (i; i < imgCount; i++) {
+          const id = `picker-${i}`
           pics = [...pics, <ImageBox 
             key={`imageBox-${i}`}
-            className={this.state.currentCounter < dollarValue ? "clicked" : ""}
-            value={dollarValue} 
+            id={id}
+            selected={selected.indexOf(id) >= 0}
             src={`img/t-posen${i}.jpg`}
-            onClick={e => {
-              this.imgClick(e)
-              }
+            onClick={(e) => { 
+              imgClick(id)} 
             }
             />]
+          generatedPicData = {...generatedPicData, [`picker-${i}`]: {price: dollarValue, selected: false, src: `img/t-posen${i}.jpg`}}
           counter+=1
           if(counter === 5){
             counter = 0
             dollarValue -= 1
           }
         }
+        if(!picData){
+          setPicData(generatedPicData)
+        }
         return pics
       }
       return make()
-      }
     }
 
+    const renderSelected = () => {
+      if(selected.length > 0){
+        return selected.map(id => {
+          // return <img 
+          // key={`selected-${id}`}
+          // src={picData[id].src} 
+          // onClick={() => {
+          //   imgClick(id)}}
+          // alt={`${selected}`}
+          // />
+          return <ImageBox 
+          key={`imageBox-selected-${id}`}
+          src={picData[id].src}
+          onClick={() => { 
+            imgClick(id)} 
+          }
+          />
+      })
+    }
+      else return null
+    }
 
-  render(){
+    React.useEffect(() => {
+    })
+
     return (
       <Fragment>
         <div className="app-wrapper">
@@ -83,20 +107,14 @@ export default class App extends React.Component{
               <div><span>$1</span></div>
             </div>
             <div className="images">
-              {this.makePics().map(img => img)}
+              {makePics().map(img => img)}
             </div>
           </section>
           <section className="selected-wrapper">
-            <div className="dollar-left">{`You have $${this.state.currentCounter} left`}</div>
+            {/* <div className="dollar-left">{`You have $${remainder} left`}</div> */}
+            <div className="dollar-left">You have <span>{remainder} $</span> left</div>
             <div className="preview-wrapper">
-              {this.state.selected.map(selected => {
-                return <img 
-                key={`selected-${selected}`}
-                src={selected} 
-                onClick={(e) => {this.imgClick(e)}}
-                alt={`${selected}`}
-                />
-              })}
+              {renderSelected()}
             </div>
           </section>
         </main>
@@ -104,4 +122,4 @@ export default class App extends React.Component{
       </Fragment>
     );
   }
-}
+export default App

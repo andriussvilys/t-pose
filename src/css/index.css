@@ -3,13 +3,16 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 html,
 body,
 #root,
-.app-wrapper,
-main {
+.app-wrapper {
   height: 100%;
   width: 100%;
 }
@@ -21,13 +24,6 @@ body {
 
 .app-wrapper {
   padding: 10px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 100%;
-      grid-template-columns: 100%;
-  -ms-grid-rows: min-content 1fr;
-      grid-template-rows: -webkit-min-content 1fr;
-      grid-template-rows: min-content 1fr;
 }
 
 .title {
@@ -36,17 +32,28 @@ body {
   grid-row-end: 2;
   font-size: 18px;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 main {
+  width: 100%;
   -ms-grid-row: 2;
       grid-row-start: 2;
   grid-row-end: 3;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: min-content 1fr;
-      grid-template-columns: -webkit-min-content 1fr;
-      grid-template-columns: min-content 1fr;
+  -ms-grid-columns: minmax(7fr, min-content) 3fr;
+      grid-template-columns: minmax(7fr, -webkit-min-content) 3fr;
+      grid-template-columns: minmax(7fr, min-content) 3fr;
 }
 
 .PickImg-wrapper {
@@ -55,21 +62,41 @@ main {
   -ms-grid-column: 1;
       grid-column-start: 1;
   grid-column-end: 2;
-  -ms-grid-columns: 10vw 50vw;
-      grid-template-columns: 10vw 50vw;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
   background-color: black;
   color: white;
+  max-width: 95vh;
 }
 
-.selected-wrapper {
+.images {
   -ms-grid-column: 2;
       grid-column-start: 2;
-  grid-column-end: 3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (20%)[5];
+      grid-template-columns: repeat(5, 20%);
 }
 
-.ImageBox-wrapper * {
-  height: 100%;
-  width: 100%;
+.ImageBox-wrapper {
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  border-bottom: 2px solid white;
+  opacity: 0.9;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.ImageBox-wrapper img {
+  height: calc(100% - 12px);
+  width: calc(100% - 6px);
+  margin: 6px 3px;
+  position: absolute;
+}
+
+.ImageBox-wrapper:hover {
+  opacity: 1;
 }
 
 .cost {
@@ -78,6 +105,7 @@ main {
 }
 
 .cost div {
+  height: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -88,45 +116,61 @@ main {
       -ms-flex-align: center;
           align-items: center;
   font-size: 5vw;
-  height: 10vw;
   border-bottom: 2px dotted white;
 }
 
-.images {
+.clicked {
+  opacity: 0.3 !important;
+}
+
+.selected-wrapper {
   -ms-grid-column: 2;
       grid-column-start: 2;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: (10vw)[5];
-      grid-template-rows: repeat(5, 10vw);
-  -ms-grid-columns: (10vw)[5];
-      grid-template-columns: repeat(5, 10vw);
-}
-
-.images div {
-  padding: 5px 2px;
-  border-bottom: 2px solid white;
-  opacity: 0.9;
-}
-
-.images div:hover {
-  opacity: 1;
-}
-
-.clicked {
-  opacity: 0.3;
+  grid-column-end: 3;
+  border: 1px dotted;
+  margin: 0 30px;
+  padding: 10px;
 }
 
 .dollar-left {
-  margin: 20px 50px;
   font-size: 24px;
 }
 
-.preview-wrapper {
-  padding-left: 50px;
+.dollar-left span {
+  background-color: white;
+  color: black;
+  padding: 0 10px;
 }
 
-.preview-wrapper img {
-  height: 100px;
+.preview-wrapper {
+  margin-top: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (33.3%)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 33.3%);
+}
+
+.preview-wrapper .ImageBox-wrapper {
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .selected-wrapper {
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    grid-column-end: 2;
+    -ms-grid-row: 2;
+        grid-row-start: 2;
+    padding: 10px;
+    margin: 20px 0;
+  }
+  main {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+  }
+  .preview-wrapper {
+    -ms-grid-columns: (20%)[auto-fit];
+        grid-template-columns: repeat(auto-fit, 20%);
+  }
 }
 /*# sourceMappingURL=index.css.map */
