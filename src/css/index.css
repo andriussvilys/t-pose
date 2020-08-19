@@ -51,9 +51,8 @@ main {
   grid-row-end: 3;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: minmax(7fr, min-content) 3fr;
-      grid-template-columns: minmax(7fr, -webkit-min-content) 3fr;
-      grid-template-columns: minmax(7fr, min-content) 3fr;
+  -ms-grid-columns: 7fr 3fr;
+      grid-template-columns: 7fr 3fr;
 }
 
 .PickImg-wrapper {
@@ -66,7 +65,7 @@ main {
       grid-template-columns: 1fr 5fr;
   background-color: black;
   color: white;
-  max-width: 95vh;
+  max-width: 97vh;
 }
 
 .images {
