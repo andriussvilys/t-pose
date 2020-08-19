@@ -68,6 +68,11 @@ const App = () => {
       return make()
     }
 
+    const clearAll = () => {
+      updateRemainder(15)
+      updateSelected([])
+    }
+
     const renderSelected = () => {
       if(selected.length > 0){
         return selected.map(id => {
@@ -111,8 +116,14 @@ const App = () => {
             </div>
           </section>
           <section className="selected-wrapper">
-            {/* <div className="dollar-left">{`You have $${remainder} left`}</div> */}
-            <div className="dollar-left">You have <span>{remainder} $</span> left</div>
+            <div className="selected-info">
+              <div className="dollar-left">You have <span>{remainder} $</span> left</div>
+              <button 
+              className={`selected-button_clear ${selected.length <= 0 ? "disabled" : ""}`}
+              onClick={() => {clearAll()}}
+              disabled={selected.length <= 0 ? true : false}
+              >Reset 🗑️</button>
+            </div>
             <div className="preview-wrapper">
               {renderSelected()}
             </div>
