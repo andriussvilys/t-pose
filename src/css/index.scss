@@ -100,20 +100,41 @@ $grid-image-margin: 5px;
     border: 1px dotted;
     margin: 0 30px;
     padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.selected-info{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 .dollar-left {
     font-size: 24px;
     span{
+        white-space: nowrap;
         background-color: white;
         color: black;
         padding: 0 10px;
     }
 }
+.selected-button_clear{
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    padding: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.disabled{
+    cursor: initial;
+    opacity: 0.2;
+}
 
 .preview-wrapper {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 33.3%);
+    grid-template-columns: repeat(auto-fit, minmax(33.3%, 80px));
     .ImageBox-wrapper{
         border: none;
     }
