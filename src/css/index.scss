@@ -1,66 +1,104 @@
-body{
-    background-color: black;
-    color: white;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app-wrapper,
+main {
     height: 100%;
     width: 100%;
 }
-.PickImg-wrapper{
-    display: grid;
-    grid-template-rows: min-content repeat(5, 50px);
-    grid-template-columns: repeat(6, 50px);
+
+body {
     background-color: black;
     color: white;
 }
-.ImageBox-wrapper{
-    *{
+
+.app-wrapper {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content 1fr;
+}
+
+.title {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 18px;
+    margin: 0;
+}
+
+main {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+}
+
+.PickImg-wrapper {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-template-columns: 10vw 50vw;
+    background-color: black;
+    color: white;
+}
+
+.selected-wrapper {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.ImageBox-wrapper {
+    * {
         height: 100%;
         width: 100%;
     }
 }
-.title{
-    grid-column-start: 2;
-    grid-column-end: 7;
-    grid-row-start: 1;
-    font-size: 18px;
-    margin: 0;
-}
-.cost{
+
+.cost {
     grid-column-start: 1;
-    grid-row-start: 2;
-    div{
-        height: 50px;
-        width: 50px;
+    div {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 24px;
+        font-size: 5vw;
+        height: 10vw;
+        border-bottom: 2px dotted white;
     }
 }
-.images{
+
+.images {
     grid-column-start: 2;
-    grid-row-start: 2;
     display: grid;
-    grid-template-rows: repeat(5, 50px);
-    grid-template-columns: repeat(5, 50px);
-    div{
+    grid-template-rows: repeat(5, 10vw);
+    grid-template-columns: repeat(5, 10vw);
+    div {
+        padding: 5px 2px;
+        border-bottom: 2px solid white;
         opacity: 0.9;
     }
-    div:hover{
+    div:hover {
         opacity: 1;
     }
 }
-.clicked{
+
+.clicked {
     opacity: 0.3;
 }
-.dollar-left{
+
+.dollar-left {
     margin: 20px 50px;
     font-size: 24px;
 }
-.preview-wrapper{
+
+.preview-wrapper {
     padding-left: 50px;
-    img{
+    img {
         height: 100px;
     }
 }
