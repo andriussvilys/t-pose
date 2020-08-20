@@ -88,9 +88,8 @@ main {
 }
 
 .ImageBox-wrapper img {
-  height: calc(100% - 12px);
-  width: calc(100% - 6px);
-  margin: 6px 3px;
+  height: 100%;
+  width: 100%;
   position: absolute;
 }
 
@@ -119,17 +118,22 @@ main {
 }
 
 .clicked {
-  opacity: 0.3 !important;
+  opacity: 0.1 !important;
 }
 
 .selected-wrapper {
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 3;
-  border: 1px dotted;
+  border: 1px dotted lime;
   margin: 0 30px;
   padding: 10px;
   font-family: 'Times New Roman', Times, serif;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: min-content min-content;
+      grid-template-rows: -webkit-min-content -webkit-min-content;
+      grid-template-rows: min-content min-content;
 }
 
 .selected-info {
@@ -157,6 +161,15 @@ main {
   padding: 0 10px;
 }
 
+.selected-buttonWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .selected-button_clear {
   text-transform: uppercase;
   background-color: black;
@@ -165,6 +178,11 @@ main {
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .disabled {
@@ -176,8 +194,8 @@ main {
   margin-top: 20px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(33.3%, 80px))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(33.3%, 80px));
+  -ms-grid-columns: (33.3%)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 33.3%);
 }
 
 .preview-wrapper .ImageBox-wrapper {
