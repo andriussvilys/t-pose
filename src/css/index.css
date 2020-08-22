@@ -209,8 +209,8 @@ main {
   margin-top: 20px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(60px, 25%))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(60px, 25%));
+  -ms-grid-columns: (25%)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 25%);
 }
 
 .preview-wrapper .ImageBox-wrapper img {
@@ -231,8 +231,8 @@ main {
         grid-template-columns: 100%;
   }
   .preview-wrapper {
-    -ms-grid-columns: (minmax(60px, 33.33%))[auto-fit];
-        grid-template-columns: repeat(auto-fit, minmax(60px, 33.33%));
+    -ms-grid-columns: (33.33%)[auto-fit];
+        grid-template-columns: repeat(auto-fit, 33.33%);
   }
 }
 /*# sourceMappingURL=index.css.map */

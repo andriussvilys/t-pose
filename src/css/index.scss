@@ -151,7 +151,7 @@ $grid-image-margin: 5px;
     margin-top: 20px;
     display: grid;
     // grid-template-columns: repeat(auto-fit, 33.3%);
-    grid-template-columns: repeat(auto-fit, minmax(60px, 25%));
+    grid-template-columns: repeat(auto-fit, 25%);
     .ImageBox-wrapper img{
         border: none;
     }
@@ -170,7 +170,7 @@ $grid-image-margin: 5px;
         grid-template-columns: 100%;
     }
     .preview-wrapper{
-        grid-template-columns: repeat(auto-fit, minmax(60px, 33.33%));
+        grid-template-columns: repeat(auto-fit, 33.33%);
         // grid-template-columns: repeat(auto-fit, minmax(60px, 20%));
     }
 }
