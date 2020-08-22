@@ -20,17 +20,13 @@ body,
 body {
   background-color: black;
   color: white;
-}
-
-.app-wrapper {
-  padding: 10px;
+  padding: 1vh;
 }
 
 .title {
   -ms-grid-row: 1;
       grid-row-start: 1;
   grid-row-end: 2;
-  font-size: 18px;
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -39,9 +35,13 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-transform: uppercase;
   font-weight: 400;
+  font-size: 16px;
+  padding: 1vh;
 }
 
 main {
@@ -49,13 +49,20 @@ main {
   -ms-grid-row: 2;
       grid-row-start: 2;
   grid-row-end: 3;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 7fr 3fr;
-      grid-template-columns: 7fr 3fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.PickImg-wrapper, .selected-wrapper {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .PickImg-wrapper {
+  margin-left: 10px;
   display: -ms-grid;
   display: grid;
   -ms-grid-column: 1;
@@ -65,7 +72,9 @@ main {
       grid-template-columns: 1fr 5fr;
   background-color: black;
   color: white;
-  max-width: 97vh;
+  width: 108vh;
+  max-height: 90vh;
+  max-width: 100%;
 }
 
 .images {
@@ -81,13 +90,13 @@ main {
   cursor: pointer;
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
-  border-bottom: 2px solid white;
   opacity: 0.9;
   position: relative;
   padding-bottom: 100%;
 }
 
 .ImageBox-wrapper img {
+  border-bottom: 2px solid white;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -113,7 +122,6 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 5vw;
   border-bottom: 2px dotted white;
 }
 
@@ -122,11 +130,14 @@ main {
 }
 
 .selected-wrapper {
+  margin-left: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 3;
   border: 1px dotted lime;
-  margin: 0 30px;
   padding: 10px;
   font-family: 'Times New Roman', Times, serif;
   display: -ms-grid;
@@ -148,10 +159,12 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  white-space: nowrap;
 }
 
 .dollar-left {
-  font-size: 24px;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .dollar-left span {
@@ -183,6 +196,8 @@ main {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  white-space: nowrap;
+  margin-top: 10px;
 }
 
 .disabled {
@@ -194,11 +209,11 @@ main {
   margin-top: 20px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (33.3%)[auto-fit];
-      grid-template-columns: repeat(auto-fit, 33.3%);
+  -ms-grid-columns: (minmax(60px, 25%))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(60px, 25%));
 }
 
-.preview-wrapper .ImageBox-wrapper {
+.preview-wrapper .ImageBox-wrapper img {
   border: none;
 }
 
@@ -210,15 +225,14 @@ main {
     -ms-grid-row: 2;
         grid-row-start: 2;
     padding: 10px;
-    margin: 20px 0;
   }
   main {
     -ms-grid-columns: 100%;
         grid-template-columns: 100%;
   }
   .preview-wrapper {
-    -ms-grid-columns: (20%)[auto-fit];
-        grid-template-columns: repeat(auto-fit, 20%);
+    -ms-grid-columns: (minmax(60px, 33.33%))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(60px, 33.33%));
   }
 }
 /*# sourceMappingURL=index.css.map */
